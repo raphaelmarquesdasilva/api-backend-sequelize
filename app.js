@@ -2,6 +2,7 @@ import express from "express"
 import cors from "cors"
 import sequelize from "./Databases/database.js"
 import User from "./Models/user.js"
+import userRoutes from "./Routes/user.js"
 
 const app = express()
 const PORT = process.env.BACK_PORT
@@ -9,7 +10,7 @@ const PORT = process.env.BACK_PORT
 app.use(express.json())
 app.use(cors())
 
-
+app.use("/users", userRoutes)
 
 
 

@@ -13,7 +13,7 @@ const User = sequelize.define("User", {
         allowNull: false,
         unique: true
     },
-    fullName: {
+    fullname: {
         type: DataTypes.STRING,
         allowNull: false
     },
@@ -26,7 +26,7 @@ const User = sequelize.define("User", {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    birthDate: {
+    birthdate: {
         type: DataTypes.DATEONLY,
         allowNull: false
     }
