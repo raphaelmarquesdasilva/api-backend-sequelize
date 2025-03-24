@@ -6,7 +6,8 @@ const dbUser = process.env.DATABASE_USER
 
 const sequelize = new Sequelize(dbName, dbUser, dbPassword, {
     host: "localhost",
-    dialect: "mariadb"
+    dialect: "mariadb",
+    logging: false
 })
 
 
