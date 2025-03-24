@@ -24,3 +24,22 @@ export const gettingOne = async (id) => {
     })
     return user
 }
+
+export const updatingUser = async (id, body) => {
+    const user = await User.update(body, {
+        where: {
+            id: id
+        }
+    })
+
+    return user
+}
+
+export const deletingUser = async (id) => {
+    const user = await User.destroy({
+        where: {
+            id: id
+        }
+    })
+    return user
+}

@@ -1,40 +1,61 @@
 import * as userRepositories from "../Repositories/user.js"
 
-export const creatingUser = async (req,res) => {
+export const creatingUser = async (req, res) => {
     const body = req.body
     try {
         const user = await userRepositories.creatingUser(body)
-        res.status(201).json({message: "User created successfully!", createdUser: body})
+        res.status(201).json({ message: "User created successfully!", createdUser: body })
     } catch (error) {
-        res.status(500).json({message: "It was not possible to create the user.", error})
+        res.status(500).json({ message: "It was not possible to create the user.", error })
     }
 }
 
-export const creatingUsers = async (req,res) => {
+export const creatingUsers = async (req, res) => {
     const body = req.body
     try {
         const users = await userRepositories.creatingUsers(body)
-        res.status(201).json({message: "Users created sucessfully!", createdUsers: body})
+        res.status(201).json({ message: "Users created sucessfully!", createdUsers: body })
     } catch (error) {
-        res.status(500).json({message: "It was not possible to create the users."})
+        res.status(500).json({ message: "It was not possible to create the users." })
     }
 }
 
-export const gettingAll = async (req,res) => {
+export const gettingAll = async (req, res) => {
     try {
         const users = await userRepositories.gettingAll()
-        res.status(200).json({message: "Users are gonna be listed below:", users: users})
+        res.status(200).json({ message: "Users are gonna be listed below:", users: users })
     } catch (error) {
-        res.status(500).json({message: "it wasn not possible to list all the users", error})
+        res.status(500).json({ message: "it wasn not possible to list all the users", error })
     }
 }
 
-export const gettingOneUser = async (req,res) => {
+export const gettingOneUser = async (req, res) => {
     const { id } = req.params
     try {
         const user = await userRepositories.gettingOne(id)
-        res.status(200).json({message: `User with id: ${id} is gonna be listed below:`, user: user})
+        res.status(200).json({ message: `User with id: ${id} is gonna be listed below:`, user: user })
     } catch (error) {
-        res.status(500).json({message: "It was not possible to list the user", error})
+        res.status(500).json({ message: "It was not possible to list the user", error })
+    }
+}
+
+export const updatingUser = async (req, res) => {
+    const { id } = req.params
+    const body = req.body
+    try {
+        const user = await userRepositories.updatingUser(id, body)
+        res.status(201).json({message: `User with id: ${id} just got updated`, objectUpdated: body})
+    } catch (error) {
+        res.status(500).josn({message: "An Error ocurred when trying to update your user", error})
+    }
+}
+
+export const deletingUser = async (req,res) => {
+    const { id } = req.params
+    try {
+        const user = await userRepositories.deletingUser(id)
+        res.status(201).json({message: `User with id: ${id} just got deleted.`})
+    } catch (error) {
+        res.status(500).json({message: "It was not possible to delete the user.", error})
     }
 }
